@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Discount Program</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .result {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        .result-container {
+            margin-top: 30px;
+        }
+
+        .result-container .result p {
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            display: block;
+            margin: 4px auto;
+            width: 327px;
+            margin-bottom: 20px;
+            background-color: #232c21;
+            border-radius: 6%;
+            box-shadow: 0 0 13px 6px rgba(0, 0, 0, 0.3);
+            transform: translateY(0px);
+        }
+
+        .container {
+            background: linear-gradient(10deg, rgb(150, 125, 162) 27.3%, rgb(13, 255, 88) 112.7%);
+            padding: 39px;
+            border-radius: 10px;
+            box-shadow: inset 0 0px 10px 19px rgba(0, 0, 0, 0.1);
+            width: 730px;
+            height: 697px;
+        }
+
+        .main-heading {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #65e08b;
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .sub-heading {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 24px;
+            background-color: #2add9b;
+            padding: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .response {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo text-center">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <div class="main-heading">Nested if in PHP</div>
+        <div class="sub-heading">Discount Program</div>
+
+        <div class="row input-container">
+            <div class="col-md-6 offset-md-3">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="age">Enter your age:</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Check Eligibility</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row result-container">
+            <div class="col-md-6 offset-md-3">
+                <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $age = $_POST['age'];
+                    $isStudent = true;
+                    $isVIP = false;
+
+                    if ($age >= 18) {
+                        if ($isStudent) {
+                            echo '<div class="result">';
+                            echo '<p class="text-success">✅ You are eligible for a student discount. 🎉</p>';
+                            if ($isVIP) {
+                                echo '<p class="text-info">✨ As a VIP student,
+                                you are eligible for an additional discount. 💯</p>';
+                            } else {
+                                echo '<p class="text-info">⭐ You can upgrade to VIP for extra benefits. 🔥</p>';
+                            }
+                            echo '</div>';
+                        } else {
+                            echo '<div class="result">';
+                            echo '<p class="text-danger">❌ You are not eligible for a student discount. 😔</p>';
+                            if ($isVIP) {
+                                echo '<p class="text-info">💎 However,
+                                 as a VIP customer, you are eligible for a discount. 💸</p>';
+                            } else {
+                                echo '<p class="text-info">💡 Consider becoming a student or VIP for exclusive benefits. 🚀</p>';
+                            }
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<div class="result">';
+                        echo '<p class="text-danger">❌ You are not eligible to participate in this program. 🚫</p>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
